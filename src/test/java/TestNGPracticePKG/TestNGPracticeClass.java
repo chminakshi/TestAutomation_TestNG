@@ -54,6 +54,7 @@ public class TestNGPracticeClass {
 		driver.get().findElement(By.cssSelector("[value='radio3']")).click();
 
 		System.out.println("Hello Minakshi12345");
+		System.out.println("Added new changes");
 		System.out.println("This is Chandra");
 
 	}
