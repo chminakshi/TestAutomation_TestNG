@@ -52,7 +52,7 @@ public class TestNGPracticeClass {
 		driver.get().findElement(By.cssSelector("[value='radio1']")).click();
 		driver.get().findElement(By.cssSelector("[value='radio2']")).click();
 		driver.get().findElement(By.cssSelector("[value='radio3']")).click();
-		System.out.println("This is Chandra34");
+		System.out.println("This is Chandra12");
 	}
 
 	@Test
