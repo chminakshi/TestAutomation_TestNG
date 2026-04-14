@@ -2,6 +2,9 @@ package stepDefinations;
 
 import org.testng.Assert;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import DriverThreadLocal.DriverThreadLocalClass;
 import Pages.LoginPage;
 
@@ -13,13 +16,15 @@ public class LoginStep {
 	
 	//private WebDriver driver = DriverThreadLocalClass.getDriver();
 	public LoginPage lp = new LoginPage(DriverThreadLocalClass.getDriver());
-	
+	ExtentTest test = DriverThreadLocalClass.gettest();
 	
 	@Given("User Launch the application")
 	public void user_launch_the_application() {
 	   
 		lp.launchURL();
-		DriverThreadLocalClass.getTest().info("Application is launched");
+		test.info("");
+		test.log(Status.FAIL, "Step is passed");
+	
 		System.out.println("User Launched the Application");
 	}
 	
@@ -27,8 +32,8 @@ public class LoginStep {
 	public void user_the_enter_the_username_and_password_and_click_on_submit_button(String user, String pwd) {
 	   
 		lp.login(user, pwd);
-		DriverThreadLocalClass.getTest().info("Username and password entered");
-		DriverThreadLocalClass.getTest().info("Submit button is clicked");
+		test.info("Username and password entered");
+		test.info("Submit button is clicked");
 	    System.out.println("User enterd username and password ");
 	}
 	
@@ -37,9 +42,10 @@ public class LoginStep {
 	  
 		String dashboardName= lp.verifyDashboard();
 	    System.out.println("User logged into the application");
-	    DriverThreadLocalClass.getTest().info("Application is logged in successful");
-	    Assert.assertEquals(dashboardName,"Dashboard");
+	    test.info("Application is logged in failed"); 
+	    test.log(Status.FAIL, "Step is failed");
+	    Assert.assertEquals(dashboardName,"Dashboard1");
+	    
+
 	}
-
-
 }

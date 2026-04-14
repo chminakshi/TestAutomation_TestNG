@@ -12,14 +12,29 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class DriverThreadLocalClass {
-   
+	
+	private static WebDriver driver;
 	// Create Reporter
-	public static   ExtentSparkReporter spark = new ExtentSparkReporter("report.html");
+	public static ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Practice\\TestAutomation_TestNg\\test-output\\ExtentReport\\extentreport.html");
 	// Create ExtentReports instance
-    public static  ExtentReports extent = new ExtentReports();
+    public static ExtentReports extent;
     public static ExtentTest test;
    //	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-	private static WebDriver driver;
+    
+    
+    public static ExtentTest gettest() {
+    	
+    	extent = new ExtentReports();
+    	extent.attachReporter(spark);
+    	test = extent.createTest("test started");
+    	return test;
+    }
+    
+    public static void flushtest()
+    {
+    extent.flush();
+    }
+
 	
 	  public static void setDriver()//(String browser)
 	   {
@@ -56,19 +71,13 @@ public class DriverThreadLocalClass {
 		  setDriver();
 		  return driver ;//.get();
 	   }
-
-	   public static void setTest()
-		  {
-			   // Create ExtentReports instance
-			   extent.attachReporter(spark);
-			   // Create Test
-			    test = extent.createTest("Created Test");
-			    
-		  }
 	   
-	   public static ExtentTest getTest()
+	   public static void quitdriver()
 	   {
-		   setTest();
-		   return test;
+		   driver.quit();
 	   }
+
+	   
+	   
+	   
 }
